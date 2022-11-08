@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import Model.Arbol;
-import Model.ArchivoAlmacen;
 import Model.Decoracion;
 import Model.Flor;
 import Model.Producto;

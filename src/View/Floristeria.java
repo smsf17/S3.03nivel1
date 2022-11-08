@@ -1,22 +1,22 @@
 package View;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Controller.ProductoSerializacionController;
 import Controller.Store;
 import Model.Arbol;
-import Model.ArchivoAlmacen;
 import Model.Decoracion;
 import Model.Flor;
 import Model.Producto;
 
 public class Floristeria {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
+		
 		ArrayList<Producto> products = new ArrayList<Producto>();
 		
-		Arbol arbol1 = new Arbol(1, "Pino", 12, 9, 50, 100);
+		/*Arbol arbol1 = new Arbol(1, "Pino", 12, 9, 50, 100);
 		Arbol arbol2 = new Arbol(2, "Cedro", 25, 21, 40, 150);
 		Flor flor1 = new Flor(3, "Margarita", 3, 1.50, 100, "blanca");
 		Flor flor2 = new Flor(4, "Girasol", 5, 3, 150, "Amarilla");
@@ -30,9 +30,13 @@ public class Floristeria {
 		products.add(decoracion2);
 		
 		ArchivoAlmacen ArA= new ArchivoAlmacen("C:\\Users\\Pau\\Downloads\\ArchivoAlmacen.txt");
-		/*ArA.crear();
+		ArA.crear();
 		ArA.agregar(products.toString());
 		ArA.listar(products.toString());*/
+		
+		ProductoSerializacionController productoSerializacionController = new ProductoSerializacionController();
+		productoSerializacionController.SerializaProducto();
+		productoSerializacionController.DesSerializaProducto();
 		
 		Scanner scn = new Scanner(System.in);
 		boolean programaActivo = true;
@@ -50,17 +54,14 @@ public class Floristeria {
 				
 			if (opcion == 1) {
 				tienda.compraProductos(products);
-				ArA.agregar(products.toString());
 			}else if (opcion == 2) {
 				tienda.ventaProductos(products);
-				ArA.agregar(products.toString());
 			}else if (opcion == 3) {
 				tienda.listadoTotalStock(products);
 			}else if (opcion == 4) {
 				tienda.valorTotalStock(products);
 			}else if (opcion == 5) {
 				tienda.imprimirStock(products);
-				ArA.listar(products.toString());
 			}else if (opcion == 0) {
 				programaActivo = false;
 			}else {

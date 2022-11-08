@@ -1,6 +1,9 @@
 package Model;
 
-public abstract class Producto {
+import java.io.Serializable;
+
+public abstract class Producto implements Serializable{
+
 	private static int idProducto = 1;
 	
 	private int id;
