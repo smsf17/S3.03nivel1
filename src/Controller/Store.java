@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,8 @@ import Model.Arbol;
 import Model.Decoracion;
 import Model.Flor;
 import Model.Producto;
+import Model.Configuration.Settings;
+import Model.Repository.ProductoSerializacionBinariaRepository;
 
 public class Store implements Operacion {
 	
@@ -16,6 +19,8 @@ public class Store implements Operacion {
 	@Override
 	public void compraProductos(ArrayList<Producto> products) {
 		Scanner scn = new Scanner(System.in);
+		
+		//ProductoSerializacionController ser = new ProductoSerializacionController();
 		
 		System.out.println("Introduzca ID del producto: ");
 		int idSolicitado = scn.nextInt();

@@ -9,6 +9,7 @@ import Model.Arbol;
 import Model.Decoracion;
 import Model.Flor;
 import Model.Producto;
+import Model.Configuration.Settings;
 
 public class Floristeria {
 	
@@ -16,7 +17,7 @@ public class Floristeria {
 		
 		ArrayList<Producto> products = new ArrayList<Producto>();
 		
-		/*Arbol arbol1 = new Arbol(1, "Pino", 12, 9, 50, 100);
+		Arbol arbol1 = new Arbol(1, "Pino", 12, 9, 50, 100);
 		Arbol arbol2 = new Arbol(2, "Cedro", 25, 21, 40, 150);
 		Flor flor1 = new Flor(3, "Margarita", 3, 1.50, 100, "blanca");
 		Flor flor2 = new Flor(4, "Girasol", 5, 3, 150, "Amarilla");
@@ -29,18 +30,16 @@ public class Floristeria {
 		products.add(decoracion1);
 		products.add(decoracion2);
 		
-		ArchivoAlmacen ArA= new ArchivoAlmacen("C:\\Users\\Pau\\Downloads\\ArchivoAlmacen.txt");
-		ArA.crear();
-		ArA.agregar(products.toString());
-		ArA.listar(products.toString());*/
-		
-		ProductoSerializacionController productoSerializacionController = new ProductoSerializacionController();
-		productoSerializacionController.SerializaProducto();
-		productoSerializacionController.DesSerializaProducto();
+		//ProductoSerializacionController productoSerializacionController = new ProductoSerializacionController();
+		//productoSerializacionController.SerializaProducto();
+		//productoSerializacionController.DesSerializaProducto();
 		
 		Scanner scn = new Scanner(System.in);
 		boolean programaActivo = true;
 		Store tienda = new Store();
+
+		ProductoSerializacionController ser = new ProductoSerializacionController();
+		ser.deserializaVariosproductos(Settings.FITXER_USUARIS);
 		
 		do {
 			System.out.println("****** Introduzca el la operación ******");
@@ -49,6 +48,7 @@ public class Floristeria {
 			System.out.println("			3. Listado de Stock y valor total");
 			System.out.println("			4. Listado de Stock y beneficio esperado");
 			System.out.println("			5. Listado Stock");
+			System.out.println("			6. Guardar información almacen");
 			System.out.println("			0. Salir");
 			int opcion = scn.nextInt();
 				
@@ -62,6 +62,8 @@ public class Floristeria {
 				tienda.valorTotalStock(products);
 			}else if (opcion == 5) {
 				tienda.imprimirStock(products);
+			}else if (opcion == 6) {
+				ser.SerializaProducto(products);;
 			}else if (opcion == 0) {
 				programaActivo = false;
 			}else {

@@ -1,18 +1,22 @@
 package Controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import Model.Producto;
+import Model.Configuration.Settings;
 import Model.Service.GeneradorService;
 import Model.Service.ProductoSerializacionBinariaService;
 import View.UtilitatsSortidaView;
 
 public class ProductoSerializacionController {
 	
-	public void SerializaProducto()
+	public void SerializaProducto(ArrayList<Producto> products)
 	{
-		GeneradorService generadorService = new GeneradorService();
-		Producto products = generadorService.getProducto();
+		/*GeneradorService generadorService = new GeneradorService();
+		Producto products = generadorService.getProducto();*/
 		
 		ProductoSerializacionBinariaService service = new ProductoSerializacionBinariaService();
 		try {
@@ -25,7 +29,7 @@ public class ProductoSerializacionController {
 		}
 	}
 	
-	public void DesSerializaProducto()
+	/*public void DesSerializaProducto()
 	{
 		ProductoSerializacionBinariaService service = new ProductoSerializacionBinariaService();
 		
@@ -44,6 +48,32 @@ public class ProductoSerializacionController {
 				
 			}
 		
+	}*/
+	@SuppressWarnings("unchecked")
+	public ArrayList<Producto> deserializaVariosproductos(String nombreFichero) {
+		ArrayList<Producto> products = null;
+
+		FileInputStream fileInputStream = null;
+		ObjectInputStream objectInputStream = null;
+
+		try {
+			fileInputStream = new FileInputStream(nombreFichero);
+			objectInputStream = new ObjectInputStream(fileInputStream);
+			products = (ArrayList<Producto>) objectInputStream.readObject();
+			System.out.println("Alumnos deserializado correctamente.");
+		} catch (IOException | ClassNotFoundException e) {
+			System.err.println("Error deserialización: " + e.getMessage());
+		} finally {
+			if (objectInputStream != null) {
+				try {
+					objectInputStream.close();
+				} catch (IOException e) {
+					System.err.println("Error cierre objectInputStream: " + e.getMessage());
+				}
+			}
+		}
+
+		return products;
 	}
 	
 }
