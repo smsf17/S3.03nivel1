@@ -15,7 +15,7 @@ public class Floristeria {
 	
 	public static void main(String[] args) {
 		
-		ArrayList<Producto> products = new ArrayList<Producto>();
+		/*ArrayList<Producto> products = new ArrayList<Producto>();
 		
 		Arbol arbol1 = new Arbol(1, "Pino", 12, 9, 50, 100);
 		Arbol arbol2 = new Arbol(2, "Cedro", 25, 21, 40, 150);
@@ -28,7 +28,7 @@ public class Floristeria {
 		products.add(flor1);
 		products.add(flor2);
 		products.add(decoracion1);
-		products.add(decoracion2);
+		products.add(decoracion2);*/
 		
 		//ProductoSerializacionController productoSerializacionController = new ProductoSerializacionController();
 		//productoSerializacionController.SerializaProducto();
@@ -39,7 +39,8 @@ public class Floristeria {
 		Store tienda = new Store();
 
 		ProductoSerializacionController ser = new ProductoSerializacionController();
-		ser.deserializaVariosproductos(Settings.FITXER_USUARIS);
+		ArrayList<Producto> products = ser.deserializaVariosproductos(Settings.FITXER_USUARIS);
+		System.out.println(products.toString());
 		
 		do {
 			System.out.println("****** Introduzca el la operación ******");
